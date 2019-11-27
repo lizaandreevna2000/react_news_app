@@ -1,0 +1,30 @@
+body {
+  background-color: #4a4a4a;
+}
+.box {
+  width: 600px;
+}
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  text-align: center;
+  margin-top: auto;
+  height: 80px;
+  color: #ffffff;
+}
+.navbar-title {
+  color: #ffffff;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.buttons .button {
+  margin-right: 0.5rem;
+}
+strong {
+  text-transform: uppercase;
+  color: #363636;
+}
