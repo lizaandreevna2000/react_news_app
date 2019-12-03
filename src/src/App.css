@@ -28,3 +28,12 @@ strong {
   text-transform: uppercase;
   color: #363636;
 }
+.title {
+  text-align: center;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+.buttons {
+  margin-right: 20px;
+  margin-bottom: 0px;
+}
