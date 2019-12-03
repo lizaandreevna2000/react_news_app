@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchNews } from '../actions/newsActions'
-
+/* import { formatDate } from '../helper/date' */
+/* import { parseISO } from 'date-fns'  */
+ 
 class News extends React.Component {
     componentDidMount() {
         this.props.fetchNews();
