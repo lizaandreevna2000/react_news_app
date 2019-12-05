@@ -1,37 +1,38 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import { CLIENT_ID } from '../config'
+import { CLIENT_ID } from '../config';
+import { postToken } from "../actions/newsActions";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { writeValue } from '../helper/storage';
+import { NavLink } from 'react-router-dom'
+
 class Header extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             isAuthenticated: localStorage.getItem('status') || false,
-            user: localStorage.getItem('name') || ''
+            user: localStorage.getItem('name') || '',
+            token: ''
         };
     }
     logout = () => {
-        this.setState({ isAuthenticated: false, user: '' });
-        localStorage.removeItem('status');
-        localStorage.removeItem('name');
+        this.setState({ isAuthenticated: false, user: '', token: ''});
+        localStorage.clear();
     }
     responseGoogle = (response) => {
-        this.setState({ isAuthenticated: true, user: response.profileObj.name });
-        localStorage.setItem('status', this.state.isAuthenticated);
-        localStorage.setItem('name', this.state.user)
+        this.setState({ isAuthenticated: true, user: response.profileObj.name, token:response.tokenId});
+        const token = this.state.token;
+        this.props.postToken(token); 
+        writeValue(this.state.isAuthenticated, this.state.user);
     }
     render() {
         let content = !!this.state.isAuthenticated ? (
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item">
+                <NavLink to="/news" className="navbar-item">
                     <p className='navbar-title'>sport news</p>
-                </a>
-
-                {/* <div role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </div> */}
+                </NavLink>
             </div>
 
             <div className="navbar-end">
@@ -48,12 +49,6 @@ class Header extends React.Component {
                 <a className="navbar-item">
                     <p className='navbar-title'>sport news</p>
                 </a>
-
-                    {/* <div role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </div> */}
             </div>
 
             <div className="navbar-end">
@@ -73,4 +68,8 @@ class Header extends React.Component {
     }
 }
 
-export default Header
+Header.propTypes = {
+    postToken: PropTypes.func.isRequired
+}
+
+export default connect(null, {postToken})(Header);

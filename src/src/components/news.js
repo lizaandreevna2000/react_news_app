@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchNews } from '../actions/newsActions'
-/* import { formatDate } from '../helper/date' */
+import { parseDate } from '../helper/date' 
+import { NavLink } from 'react-router-dom'
 /* import { parseISO } from 'date-fns'  */
  
 class News extends React.Component {
@@ -16,10 +17,10 @@ class News extends React.Component {
                 <div className="media-content">
                 <div className="content">
                     <p>
-                    <strong>{item.title}</strong> <br />
-                    <small>author: {item.creator.displayName}</small> <br /> <small>created by: {item.createDate}</small>
+                    {/* <NavLink> */}<strong>{item.title}</strong>{/* </NavLink> */}<br />
+                    <small>author: {item.creator.displayName}</small> <br /> <small>created by: { parseDate(item.createDate)}</small>
                     <br />
-                    {item.content}
+                    {item.content}...
                     </p>
                 </div>
                 <nav className="level is-mobile">
