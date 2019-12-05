@@ -5,7 +5,7 @@ import { postToken } from "../actions/newsActions";
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { writeValue } from '../helper/storage';
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
     constructor(props) {
@@ -30,9 +30,9 @@ class Header extends React.Component {
         let content = !!this.state.isAuthenticated ? (
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-               {/*  <NavLink to="/" className="navbar-item"> */}
+               <Link to="/" className="navbar-item"> 
                     <p className='navbar-title'>sport news</p>
-               {/*  </NavLink> */}
+               </Link> 
             </div>
 
             <div className="navbar-end">

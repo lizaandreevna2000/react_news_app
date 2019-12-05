@@ -3,6 +3,7 @@ body {
 }
 .box {
   width: 600px;
+  margin-top: 15px;
 }
 .App {
   min-height: 100vh;

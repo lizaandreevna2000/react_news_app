@@ -1,26 +1,65 @@
 import React from 'react';
 import { fetchArticle } from '../actions/newsActions'
 import { connect } from "react-redux";
+import { parseDate } from '../helper/date'
 
 class Article extends React.Component {
-  /* componentDidMount() {
+  componentDidMount() {
     const { fetchArticle, match } = this.props
     fetchArticle(match.params.id);
-    console.log(match.params.id)
-  } */
+  } 
     render() {
-        console.log(this.props.article[0])
+        let elem = this.props.elem;
+        console.log(elem.creator)
         return (
-        <h1>Article {/* {article.title} */}</h1>
+          <div className="box" key={elem._id}>
+            <article className="media">
+                <div className="media-content">
+                <div className="content">
+                    <p>
+                    <strong>{elem.title}</strong><br />
+                    {/* <small>author: {elem.creator.displayName}</small> <br />  */}
+                    <small>create by: {parseDate(elem.createDate)}</small> <br /> 
+                    <br />
+                    {elem.content}...
+                    </p>
+                </div>
+                <nav className="level is-mobile">
+                    <div className="level-left">
+                    <a className="level-elem" aria-label="reply">
+                        <span className="icon is-small">
+                        <i className="fas fa-reply" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a className="level-elem" aria-label="retweet">
+                        <span className="icon is-small">
+                        <i className="fas fa-retweet" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    <a className="level-elem" aria-label="like">
+                        <span className="icon is-small">
+                        <i className="fas fa-heart" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                    </div>
+                </nav>
+                </div>
+            </article>
+        </div>
         ) 
     } 
 }
 
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    fetchArticle : () => dispatch(fetchArticle(props.match.params.id))
+  }
 
-/* const mapStateToProps = (state) => {
+}
+const mapStateToProps = (state) => {
     return ({
-      article: state.news.items
+      elem: state.news.item
     })
-}  */
+} 
 
-export default /* connect( *//*  mapStateToProps, { fetchArticle })( */Article/* )  */ 
+export default connect( mapStateToProps, mapDispatchToProps )(Article)  
