@@ -24,10 +24,10 @@ export const postToken = (token) => dispatch => {
 
 export const fetchArticle = (id) => dispatch => {
     return axios.get(`http://127.0.0.1:5000/api/v1/feeds/${id}`)
-        .then(article => {
+        .then( news => {
             dispatch({
                 type: FETCH_ARTICLE,
-                payload: article.data.feed,
+                payload: news.data.feed,
             });
         })
 }

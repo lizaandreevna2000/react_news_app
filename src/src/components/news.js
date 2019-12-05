@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchNews } from '../actions/newsActions'
 import { parseDate } from '../helper/date' 
-import { NavLink } from 'react-router-dom'
-/* import { parseISO } from 'date-fns'  */
+import { Link } from "react-router-dom";
+
  
 class News extends React.Component {
     componentDidMount() {
@@ -12,12 +12,12 @@ class News extends React.Component {
     }
     render() {
         const postItems = this.props.news.map((item)=> (
-            <div className="box" key={item.id}>
+            <div className="box" key={item._id}>
             <article className="media">
                 <div className="media-content">
                 <div className="content">
                     <p>
-                    {/* <NavLink> */}<strong>{item.title}</strong>{/* </NavLink> */}<br />
+                    <Link to={`/news/${item._id}`}><strong>{item.title}</strong></Link><br />
                     <small>author: {item.creator.displayName}</small> <br /> <small>created by: { parseDate(item.createDate)}</small>
                     <br />
                     {item.content}...

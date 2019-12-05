@@ -1,7 +1,7 @@
-import React from 'react'
+/* import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import App from './App'
-import Article from './components/article'
+
 
 export const routing = (
     <Router>
@@ -13,4 +13,4 @@ export const routing = (
             </Switch>
         </div>
     </Router>
-)
+) */

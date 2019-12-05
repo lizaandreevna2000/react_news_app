@@ -1,22 +1,26 @@
 import React from 'react';
-
+import { fetchArticle } from '../actions/newsActions'
+import { connect } from "react-redux";
 
 class Article extends React.Component {
+  /* componentDidMount() {
+    const { fetchArticle, match } = this.props
+    fetchArticle(match.params.id);
+    console.log(match.params.id)
+  } */
     render() {
+        console.log(this.props.article[0])
         return (
-            
-            <div class="card">
-                <div class="card-content">
-                    <p class="title">
-                    “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
-                    </p>
-                    <p class="subtitle">
-                    Jeff Atwood
-                    </p>
-                </div>
-            </div>
-        )
-    }
+        <h1>Article {/* {article.title} */}</h1>
+        ) 
+    } 
 }
 
-export default Article
+
+/* const mapStateToProps = (state) => {
+    return ({
+      article: state.news.items
+    })
+}  */
+
+export default /* connect( *//*  mapStateToProps, { fetchArticle })( */Article/* )  */ 

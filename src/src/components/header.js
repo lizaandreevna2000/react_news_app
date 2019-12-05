@@ -30,9 +30,9 @@ class Header extends React.Component {
         let content = !!this.state.isAuthenticated ? (
         <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <NavLink to="/news" className="navbar-item">
+               {/*  <NavLink to="/" className="navbar-item"> */}
                     <p className='navbar-title'>sport news</p>
-                </NavLink>
+               {/*  </NavLink> */}
             </div>
 
             <div className="navbar-end">
