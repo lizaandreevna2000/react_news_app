@@ -1,7 +1,5 @@
-import {FETCH_NEWS, LOGIN_SUCCESS, FETCH_ARTICLE} from './types';
+import {FETCH_NEWS, LOGIN_SUCCESS, FETCH_ARTICLE, EDIT_ARTICLE} from './types';
 import axios from 'axios';
-
-axios.defaults.headers.common["x-access-token"] = localStorage.getItem('token') || null;
 
 export const fetchNews = () => dispatch => {
     return axios.get('http://127.0.0.1:5000/api/v1/feeds')
@@ -24,7 +22,7 @@ export const postToken = (token) => dispatch => {
 
 export const fetchArticle = (id) => dispatch => {
     return axios.get(`http://127.0.0.1:5000/api/v1/feeds/${id}`)
-        .then( news => {
+        .then(news => {
             dispatch({
                 type: FETCH_ARTICLE,
                 payload: news.data.feed,
@@ -32,9 +30,20 @@ export const fetchArticle = (id) => dispatch => {
         })
 }
 
+export const editArticle = (id, editData) => dispatch => {
+    console.log('dispatching')
+    return axios.put(`http://127.0.0.1:5000/api/v1/feeds/${id}`, editData,  {headers: {'x-access-token': localStorage.getItem('token')}})
+        .then(response => {
+            dispatch({
+                type: EDIT_ARTICLE,
+                payload: response.data.feed
+            })
+        })
+        .catch(err => console.log(err.response.data))
+}
+
 function loginSuccess(token) {
     localStorage.setItem('token', token);
-    axios.defaults.headers.common["x-access-token"] = token;
     return {
         type: LOGIN_SUCCESS,
         payload: token

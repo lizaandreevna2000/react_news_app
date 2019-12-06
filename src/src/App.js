@@ -1,9 +1,10 @@
 import React from 'react';
-import Header from './components/header'
-import Footer from './components/footer'
-import News from './components/news'
+import Header from './components/header';
+import Footer from './components/footer';
+import News from './components/news';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Article from './components/article'
+import Article from './components/article';
+import updateArticle from './components/editArticle'
 import './App.css';
 
 class App extends React.Component {
@@ -15,7 +16,8 @@ class App extends React.Component {
             <div className="container">
                 <Switch>
                     <Route exact path="/" component={News} />
-                    <Route exact path="/news/:id" component={Article} /> 
+                    <Route exact path="/news/:id" component={Article} />
+                    <Route exact path="/news/:id/edit" component={updateArticle} /> 
                 </Switch>
             </div>
             <Footer />

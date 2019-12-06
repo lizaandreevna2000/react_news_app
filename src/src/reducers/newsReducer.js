@@ -1,4 +1,5 @@
-import {FETCH_NEWS, FETCH_ARTICLE} from '../actions/types';
+import {FETCH_NEWS, FETCH_ARTICLE, EDIT_ARTICLE} from '../actions/types';
+
 
 const initialState = {
     items:[],
@@ -11,6 +12,8 @@ export default function(state = initialState, action) {
             return Object.assign({},state, {items: action.payload});
         case FETCH_ARTICLE: 
             return Object.assign({}, state, {item: action.payload});
+        case EDIT_ARTICLE:
+            return Object.assign({},state, {item: action.payload});
         default: 
             return state;
     }

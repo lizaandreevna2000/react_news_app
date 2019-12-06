@@ -5,6 +5,9 @@ body {
   width: 600px;
   margin-top: 15px;
 }
+.message {
+  margin-top: 15px;
+}
 .App {
   min-height: 100vh;
   display: flex;
@@ -43,4 +46,17 @@ strong {
 }
 .login {
   padding-bottom: 9px;
+}
+svg {
+  cursor: pointer;
+}
+.navbar-brand {
+  width: 100%;
+  justify-content: space-between;
+}
+.button-container {
+  display: flex;
+}
+.textarea {
+  margin-top: 15px;
 }

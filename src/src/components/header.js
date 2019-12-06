@@ -33,12 +33,11 @@ class Header extends React.Component {
                <Link to="/" className="navbar-item"> 
                     <p className='navbar-title'>sport news</p>
                </Link> 
-            </div>
-
-            <div className="navbar-end">
-                <h2 className='pretitle'>Welcome: {this.state.user} </h2>
-                <div className="buttons">
-                    <button className='button' onClick={this.logout}>Log Out</button>
+                <div className = 'button-container'>
+                    <h2 className='pretitle'>Welcome: {this.state.user} | </h2> 
+                    <div className="buttons">
+                        <button className='button' onClick={this.logout}>Log Out</button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -49,9 +48,6 @@ class Header extends React.Component {
                 <a className="navbar-item">
                     <p className='navbar-title'>sport news</p>
                 </a>
-            </div>
-
-            <div className="navbar-end">
                 <div className="buttons login">
                     <GoogleLogin
                         clientId={CLIENT_ID}
