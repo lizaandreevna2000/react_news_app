@@ -37,6 +37,7 @@ class Header extends React.Component {
                     <h2 className='pretitle'>Welcome: {this.state.user} | </h2> 
                     <div className="buttons">
                         <button className='button' onClick={this.logout}>Log Out</button>
+                        <Link to="/news/create"><button className='button'>Create Article</button></Link>
                     </div>
                 </div>
             </div>

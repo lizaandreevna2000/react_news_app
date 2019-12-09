@@ -9,6 +9,6 @@ export default function(state = initialState, action) {
         case LOGIN_SUCCESS: 
             return Object.assign({},state, {users: action.payload});
         default:
-            return state; // We return the default state here
+            return state; 
     }
 }
