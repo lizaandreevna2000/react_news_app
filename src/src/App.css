@@ -18,6 +18,7 @@ footer {
   margin-top: auto;
   height: 80px;
   color: #ffffff;
+  padding-top: 30px;
 }
 .navbar-title {
   color: #ffffff;
@@ -59,4 +60,9 @@ svg {
 }
 .textarea {
   margin-top: 15px;
+}
+.box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -1,8 +1,9 @@
-import { FETCH_NEWS, LOGIN_SUCCESS, FETCH_ARTICLE, EDIT_ARTICLE, DELETE_ARTICLE, CREATE_ARTICLE } from './types';
+import { FETCH_NEWS, LOGIN_SUCCESS, FETCH_ARTICLE, EDIT_ARTICLE, DELETE_ARTICLE, CREATE_ARTICLE, FETCH_NEWS_REQUEST, FETCH_ARTICLE_REQUEST } from './types';
 import { BASE_URL } from '../config';
 import axios from 'axios';
 
 export const fetchNews = () => dispatch => {
+    dispatch({type: FETCH_NEWS_REQUEST});
     return axios.get(`${BASE_URL}/feeds`)
         .then(news => {
                 dispatch({
@@ -21,8 +22,9 @@ export const postToken = (token) => dispatch => {
     })
 }
 
-export const fetchArticle = (id) => dispatch => {
-    return axios.get(`${BASE_URL}/feeds/${id}`)
+export const fetchArticle = (id) => async dispatch => {
+    await dispatch({type: FETCH_ARTICLE_REQUEST})
+    return await axios.get(`${BASE_URL}/feeds/${id}`)
         .then(news => {
             dispatch({
                 type: FETCH_ARTICLE,
@@ -47,7 +49,6 @@ export const deleteArticle = (id) => dispatch => {
     console.log('dispatching')
     return axios.delete(`${BASE_URL}/feeds/${id}`, {headers: {'x-access-token': localStorage.getItem('token')}})
         .then (response => { 
-            console.log(response.data)
             dispatch({
                 type: DELETE_ARTICLE,
                 deletedNews: response.data

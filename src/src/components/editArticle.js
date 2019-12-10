@@ -4,32 +4,32 @@ import { fetchArticle, editArticle} from '../actions/newsActions';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Form from './form';
+import preloader from '../assets/img/loader.gif'
 
 class updateArticle extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            title: this.props.article.title || '',
-            content: this.props.article.content || '',
+            title: this.props.article.title,
+            content: this.props.article.content,
         }
-    }
+    } 
     componentDidMount() {
-        const id = this.props.match.params.id;
-        this.props.fetchArticle(id);
+        const { fetchArticle, match } = this.props
+        fetchArticle(match.params.id);
     }
     updateHandler = () => {
-        const { title, content } = this.state;
-        this.props.editArticle(this.props.article._id, {title, content});
+        console.log(this.state)
+        this.props.editArticle(this.props.article._id, this.state);
         this.props.history.push("/");
     }
     render() {
-        const { article } = this.props;
+        const { isFetching } = this.props
         return (
             <div>
-                <Form handleSubmit={this.updateHandler}
-                      title={article.title}
-                      content={article.content}>
-                </Form>
+                {isFetching && <img src={preloader} className = 'preloader' />}
+                {!isFetching && <Form handleSubmit = {this.updateHandler} title = {this.props.article.title} content = {this.props.article.content}>
+                </Form>}
             </div>
         );
     }
@@ -42,9 +42,12 @@ editArticle.propTypes = {
     article: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({
-    article: state.news.item
-});
+const mapStateToProps = state => {
+    return ({
+        article: state.news.item,
+        isFetching: state.news.isFetching
+    })
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {

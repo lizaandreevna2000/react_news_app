@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchNews, deleteArticle } from '../actions/newsActions'
@@ -6,7 +6,7 @@ import { parseDate } from '../helper/date'
 import { Link } from "react-router-dom";
 import { FaPencilAlt } from 'react-icons/fa';
 import { FaRegWindowClose } from 'react-icons/fa';
-import preloader from '../assets/img/loader.gif'
+import preloader from '../assets/img/loader.gif';
 
 
 class News extends React.Component {
@@ -14,7 +14,8 @@ class News extends React.Component {
         this.props.fetchNews();
     }
     render() {
-        const postItems = this.props.news.map((item)=> (
+        const {news, isFetching} = this.props;
+        const postItems = news.map((item)=> (
             <div className="box" key={item._id}>
             <article className="media">
                 <div className="media-content">
@@ -50,9 +51,14 @@ class News extends React.Component {
         </div>
         ))
         return (
-            <div>
+            <div className = 'box-container'>
                 <h1 className='title has-text-white'>News</h1>
-                {postItems}
+                {isFetching && <img src={preloader} className = 'preloader' />}
+                {!isFetching && news && (
+                    <Fragment>
+                        {postItems}
+                    </Fragment>
+                )}
             </div>
         )
     }
@@ -73,7 +79,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = state => ({
     news: state.news.items,
-    isFetching: state.news.isFetching
+    isFetching: state.news.isFetching,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps )(News);
