@@ -5,16 +5,14 @@ import { Link } from "react-router-dom";
 class Form extends React.Component {
     constructor(props) {
         super(props) 
+        this.handleChange = this.handleChange.bind(this);
         this.state = {
-            content: this.props.content || '',
-            title: this.props.title || ''
+            title: this.props.title || '',
+            content: this.props.content || ''
         }
     }
     handleChange(e) {
-        this.setState({ [e.target.id]: e.target.value });
-    }
-    componentWillReceiveProps(props) {
-        this.setState(props)
+        this.setState({ [e.target.name]: e.target.value });
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -24,15 +22,14 @@ class Form extends React.Component {
         return (
             <div className='box'>
                 <form onSubmit={this.handleSubmit}>
-                    <input className="input" id='title' defaultValue={this.state.title} onChange={this.handleChange.bind(this)} type="text"></input>
-                    <textarea className="textarea" id='content' defaultValue={this.state.content} onChange={this.handleChange.bind(this)}></textarea>
+                    <input className="input" name ='title' defaultValue={this.state.title} onChange={this.handleChange} type="text"></input>
+                    <textarea className="textarea" name ='content' defaultValue={this.state.content} onChange={this.handleChange}></textarea>
                     <button type='submit' className="button is-dark">Submit</button>
                     <Link to="/"><button className="button is-dark">Cansel</button></Link>
                 </form>
             </div>
         )
     }
-
 }
 
 

@@ -2,25 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchArticle, editArticle} from '../actions/newsActions';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Form from './form';
-import preloader from '../assets/img/loader.gif'
+import preloader from '../assets/img/loader.gif';
 
 class updateArticle extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            title: this.props.article.title,
-            content: this.props.article.content,
+            title: this.props.article.title || '',
+            content: this.props.article.content || '',
         }
     } 
     componentDidMount() {
         const { fetchArticle, match } = this.props
         fetchArticle(match.params.id);
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            title: nextProps.article.title,
+            content: nextProps.article.content
+        })
+    }
     updateHandler = () => {
-        console.log(this.state)
-        this.props.editArticle(this.props.article._id, this.state);
+        const { title, content } = this.state;
+        console.log( { title, content } )
+        this.props.editArticle(this.props.article._id, { title, content });
         this.props.history.push("/");
     }
     render() {

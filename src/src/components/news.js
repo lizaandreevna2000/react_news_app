@@ -77,10 +77,12 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = state => ({
-    news: state.news.items,
-    isFetching: state.news.isFetching,
-})
+const mapStateToProps = state => {
+    return {
+        news: state.news.items,
+        isFetching: state.news.isFetching,
+    }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps )(News);
 
