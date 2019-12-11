@@ -7,8 +7,8 @@ class Form extends React.Component {
         super(props) 
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-            title: this.props.title || '',
-            content: this.props.content || ''
+            title: props.title || '',
+            content: props.content || ''
         }
     }
     handleChange(e) {
@@ -22,8 +22,8 @@ class Form extends React.Component {
         return (
             <div className='box'>
                 <form onSubmit={this.handleSubmit}>
-                    <input className="input" name ='title' defaultValue={this.state.title} onChange={this.handleChange} type="text"></input>
-                    <textarea className="textarea" name ='content' defaultValue={this.state.content} onChange={this.handleChange}></textarea>
+                    <input className="input" name ='title' value={this.state.title} onChange={this.handleChange} type="text"></input>
+                    <textarea className="textarea" name ='content' value={this.state.content} onChange={this.handleChange}></textarea>
                     <button type='submit' className="button is-dark">Submit</button>
                     <Link to="/"><button className="button is-dark">Cansel</button></Link>
                 </form>

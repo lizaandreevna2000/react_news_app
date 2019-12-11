@@ -4,8 +4,8 @@ import Footer from './components/footer';
 import News from './components/news';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Article from './components/article';
-import updateArticle from './components/editArticle'
-import postArticle from './components/postArticle'
+import UpdateArticle from './components/editArticle'
+import PostArticle from './components/postArticle'
 import './App.css';
 
 class App extends React.Component {
@@ -17,9 +17,9 @@ class App extends React.Component {
             <div className="container">
                 <Switch>
                     <Route exact path="/" component={News} />
-                    <Route exact path="/news/create" component={postArticle} />
+                    <Route exact path="/news/create" component={PostArticle} />
                     <Route exact path="/news/:id" component={Article} /> 
-                    <Route exact path="/news/:id/edit" component={updateArticle} /> 
+                    <Route exact path="/news/:id/edit" component={UpdateArticle} /> 
                 </Switch>
             </div>
             <Footer />

@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import Form from './form';
 import preloader from '../assets/img/loader.gif';
 
-class updateArticle extends React.Component {
+class UpdateArticle extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            title: this.props.article.title || '',
-            content: this.props.article.content || '',
+            title: props.article.title || '',
+            content: props.article.content || '',
         }
     } 
     componentDidMount() {
@@ -25,7 +25,6 @@ class updateArticle extends React.Component {
     }
     updateHandler = () => {
         const { title, content } = this.state;
-        console.log( { title, content } )
         this.props.editArticle(this.props.article._id, { title, content });
         this.props.history.push("/");
     }
@@ -62,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(updateArticle);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateArticle);

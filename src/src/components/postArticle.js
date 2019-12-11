@@ -3,7 +3,7 @@ import Form from './form';
 import { createArticle } from '../actions/newsActions';
 import { connect } from "react-redux";
 
-class postArticle extends React.Component {
+class PostArticle extends React.Component {
     createHandler = (data) => {
         this.props.createArticle(data);
         this.props.history.push("/");
@@ -20,4 +20,4 @@ class postArticle extends React.Component {
 
 
 
-export default connect(null, { createArticle })(postArticle);
+export default connect(null, { createArticle })(PostArticle);
